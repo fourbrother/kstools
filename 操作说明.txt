@@ -1,0 +1,11 @@
+在使用该工具之前，一定要配置好JAVA_HOME和aapt工具目录！
+将需要操作的apk文件放在当前目录下，默认名称是src.apk
+如果要修改apk名称可以去kstools.bat中进行修改
+
+注意：
+
+第一种加固apk：如果是加固的apk,在脱壳之后进行修复之后的apk
+需要先将加固前的apk放到目录下，然后直接拖apk文件到apksign.bat中运行获取签名信息，运行结束之后保存在apksign.txt中
+然后将修复之后的apk文件命名为src.apk，放在当前目录下，直接运行kstools.bat即可
+
+第二种非加固apk：如果是非加固的app,直接将apk拷贝到当前目录下，命名为src.apk，直接运行kstools.bat即可，如果目录下还存在apksign.txt文件，需要手动删除该文件。以免使用错误签名
