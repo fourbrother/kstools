@@ -11,7 +11,7 @@
 ##需要先将加固前的apk放到目录下，然后直接拖apk文件到apksign.bat中运行获取签名信息，运行结束之后保存在apksign.txt中;然后将修复之后的apk文件命名为src.apk，放在当前目录下，直接运行kstools.bat即可
 ##对于加固app有很多特殊情况，所以如果操作失败，可以自行编写代码获取加固app的签名信息，方法很多，自行网上搜索。
 <br>
-##第二种非加固apk：如果是非加固的app,直接将apk拷贝到当前目录下，命名为src.apk，直接运行kstools.bat即可，<font color='FF00FF'>如果目录下还存在apksign.txt文件，需要手动删除该文件。以免使用错误签名!</font>
+##第二种非加固apk：如果是非加固的app,直接将apk拷贝到当前目录下，命名为src.apk，直接运行kstools.bat即可，<font color='#FF00FF'>如果目录下还存在apksign.txt文件，需要手动删除该文件。以免使用错误签名!</font>
 
 <br>
 #操作签名失败
