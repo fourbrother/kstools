@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Apr 21 15:22:07 GMT+08:00 2017
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=kstools_fat.jar
+manifest.mergeall=true
+manifest.mainclass=cn.wjdiankong.jw.JWMain
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
