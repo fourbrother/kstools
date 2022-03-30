@@ -16,68 +16,68 @@ public class DoWorkUtils {
 	public static ArrayList<String> errorDexList = new ArrayList<String>();
 	
 	/**
-	 * »ñÈ¡Ó¦ÓÃÇ©ÃûĞÅÏ¢
+	 * è·å–åº”ç”¨ç­¾åä¿¡æ¯
 	 * @param srcApkFile
 	 * @return
 	 */
 	public static boolean getAppSign(File srcApkFile){
 		try{
 			long time = System.currentTimeMillis();
-			System.out.println("µÚÒ»²½==> »ñÈ¡apkÎÄ¼şÇ©ÃûĞÅÏ¢");
+			System.out.println("ç¬¬ä¸€æ­¥==> è·å–apkæ–‡ä»¶ç­¾åä¿¡æ¯");
 			String sign = ApkSign.getApkSignInfo(srcApkFile.getAbsolutePath());
 			Const.appSign = sign;
 			System.out.println("signed:"+sign);
-			System.out.println("»ñÈ¡apkÇ©ÃûĞÅÏ¢³É¹¦===ºÄÊ±:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
+			System.out.println("è·å–apkç­¾åä¿¡æ¯æˆåŠŸ===è€—æ—¶:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
 			return true;
 		}catch(Exception e){
-			System.out.println("»ñÈ¡apkÇ©ÃûĞÅÏ¢Ê§°Ü£¬ÍË³ö£¡:"+e.toString());
+			System.out.println("è·å–apkç­¾åä¿¡æ¯å¤±è´¥ï¼Œé€€å‡ºï¼:"+e.toString());
 			return false;
 		}
 	}
 	
 	/**
-	 * »ñÈ¡Ó¦ÓÃÈë¿ÚÀà
+	 * è·å–åº”ç”¨å…¥å£ç±»
 	 */
 	public static boolean getAppEnter(File srcApkFile){
 		try{
 			long time = System.currentTimeMillis();
-			System.out.println("µÚ¶ş²½==> »ñÈ¡apkÎÄ¼şÈë¿ÚĞÅÏ¢");
+			System.out.println("ç¬¬äºŒæ­¥==> è·å–apkæ–‡ä»¶å…¥å£ä¿¡æ¯");
 			String enter = AnalysisApk.getAppEnterApplication(srcApkFile.getAbsolutePath());
 			Const.entryClassName = enter.replace(".", "/");
-			System.out.println("Ó¦ÓÃÈë¿ÚÀà:"+enter);
-			System.out.println("»ñÈ¡apkÈë¿ÚÀàĞÅÏ¢³É¹¦===ºÄÊ±:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
+			System.out.println("åº”ç”¨å…¥å£ç±»:"+enter);
+			System.out.println("è·å–apkå…¥å£ç±»ä¿¡æ¯æˆåŠŸ===è€—æ—¶:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
 			return true;
 		}catch(Exception e){
-			System.out.println("»ñÈ¡apkÈë¿ÚÀàĞÅÏ¢Ê§°Ü£¬ÍË³ö£¡:"+e.toString());
+			System.out.println("è·å–apkå…¥å£ç±»ä¿¡æ¯å¤±è´¥ï¼Œé€€å‡ºï¼:"+e.toString());
 			FileUtils.printException(e);
 			return false;
 		}
 	}
 	
 	/**
-	 * ½âÑ¹apk
+	 * è§£å‹apk
 	 */
 	public static boolean zipApkWork(File srcApkFile, String unZipDir){
 		try {
 			long time = System.currentTimeMillis();
-			System.out.println("µÚÈı²½==> ½âÑ¹apkÎÄ¼ş:"+srcApkFile.getAbsolutePath());
+			System.out.println("ç¬¬ä¸‰æ­¥==> è§£å‹apkæ–‡ä»¶:"+srcApkFile.getAbsolutePath());
 			FileUtils.decompressDexFile(srcApkFile.getAbsolutePath(), unZipDir);
-			System.out.println("½âÑ¹apkÎÄ¼ş½áÊø===ºÄÊ±:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
+			System.out.println("è§£å‹apkæ–‡ä»¶ç»“æŸ===è€—æ—¶:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
 			return true;
 		} catch (Throwable e) {
-			System.out.println("½âÑ¹apkÎÄ¼şÊ§°Ü£¬ÍË³ö£¡:"+e.toString());
+			System.out.println("è§£å‹apkæ–‡ä»¶å¤±è´¥ï¼Œé€€å‡ºï¼:"+e.toString());
 			return false;
 		}
 	}
 	
 	/**
-	 * É¾³ıÇ©ÃûÎÄ¼ş
+	 * åˆ é™¤ç­¾åæ–‡ä»¶
 	 */
 	public static boolean deleteMetaInf(String unZipDir, String aaptCmdDir, String srcApkPath){
 		try{
 			long time = System.currentTimeMillis();
 			File metaFile = new File(unZipDir + Const.METAINFO);
-			System.out.println("µÚËÄ²½==> É¾³ıÇ©ÃûÎÄ¼ş");
+			System.out.println("ç¬¬å››æ­¥==> åˆ é™¤ç­¾åæ–‡ä»¶");
 			if(metaFile.exists()){
 				File[] metaFileList = metaFile.listFiles();
 				File aaptFile = new File(aaptCmdDir);
@@ -85,19 +85,19 @@ public class DoWorkUtils {
 				for(File f : metaFileList){
 					cmd = cmd + " " + Const.METAINFO + f.getName();
 				}
-				System.out.println("É¾³ıÇ©ÃûÎÄ¼şÃüÁî:"+cmd);
+				System.out.println("åˆ é™¤ç­¾åæ–‡ä»¶å‘½ä»¤:"+cmd);
 				execCmd(cmd, true);
 			}
-			System.out.println("É¾³ıÇ©ÃûÎÄ¼ş½áÊø===ºÄÊ±:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
+			System.out.println("åˆ é™¤ç­¾åæ–‡ä»¶ç»“æŸ===è€—æ—¶:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
 			return true;
 		}catch(Throwable e){
-			System.out.println("É¾³ıÇ©ÃûÎÄ¼şÊ§°Ü£¬ÍË³ö£¡:"+e.toString());
+			System.out.println("åˆ é™¤ç­¾åæ–‡ä»¶å¤±è´¥ï¼Œé€€å‡ºï¼:"+e.toString());
 			return false;
 		}
 	}
 	
 	/**
-	 * ½«dex×ª»¯³Ésmali
+	 * å°†dexè½¬åŒ–æˆsmali
 	 */
 	public static boolean dexToSmali(String dexFile, String smaliDir){
 		File smaliDirF = new File(smaliDir);
@@ -105,29 +105,29 @@ public class DoWorkUtils {
 			smaliDirF.delete();
 		}
 		smaliDirF.mkdirs();
-		System.out.println("µÚÎå²½==> ½«dex×ª»¯³Ésmali");
-		String javaCmd = "java -jar libs"+File.separator+"baksmali.jar -o "+smaliDir + " " + dexFile;
+		System.out.println("ç¬¬äº”æ­¥==> å°†dexè½¬åŒ–æˆsmali");
+		String javaCmd = "java -jar libs"+File.separator+"baksmali.jar disassemble "+dexFile + " " + "-o" + " " + smaliDir;
 		long startTime = System.currentTimeMillis();
 		try {
 			Process pro = Runtime.getRuntime().exec(javaCmd);
 			int status = pro.waitFor();
 			if(status == 0){
-				System.out.println("dex×ª»¯smali³É¹¦===ºÄÊ±:"+((System.currentTimeMillis()-startTime)/1000)+"s\n\n");
+				System.out.println("dexè½¬åŒ–smaliæˆåŠŸ===è€—æ—¶:"+((System.currentTimeMillis()-startTime)/1000)+"s\n\n");
 				return true;
 			}
-			System.out.println("dex×ª»¯smaliÊ§°Ü,status:"+status);
+			System.out.println("dexè½¬åŒ–smaliå¤±è´¥,status:"+status);
 			return false;
 		} catch (Exception e) {
-			System.out.println("dex×ª»¯smaliÊ§°Ü:"+e.toString());
+			System.out.println("dexè½¬åŒ–smaliå¤±è´¥:"+e.toString());
 			return false;
 		}
 	}
 	
 	/**
-	 * Ìæ»»Ô­Ê¼Ç©ÃûºÍ°üÃû
+	 * æ›¿æ¢åŸå§‹ç­¾åå’ŒåŒ…å
 	 */
 	public static boolean setSignAndPkgName(){
-		System.out.println("µÚÁù²½==> ´úÂëÖĞÌæ»»Ô­Ê¼Ç©ÃûºÍ°üÃûĞÅÏ¢");
+		System.out.println("ç¬¬å…­æ­¥==> ä»£ç ä¸­æ›¿æ¢åŸå§‹ç­¾åå’ŒåŒ…åä¿¡æ¯");
 		File pmsSmaliDirF = new File(JWMain.rootPath + Const.smaliTmpDir + File.separator + Const.pmsSmaliDir);
 		if(!pmsSmaliDirF.exists()){
 			pmsSmaliDirF.mkdirs();
@@ -156,10 +156,10 @@ public class DoWorkUtils {
             		writer.write(str+"\n");
             	}
             }
-            System.out.println("ÉèÖÃÇ©ÃûºÍ°üÃû³É¹¦===ºÄÊ±:"+((System.currentTimeMillis()-startTime)/1000)+"s\n\n");
+            System.out.println("è®¾ç½®ç­¾åå’ŒåŒ…åæˆåŠŸ===è€—æ—¶:"+((System.currentTimeMillis()-startTime)/1000)+"s\n\n");
 			return true;
 		}catch(Exception e){
-			System.out.println("ÉèÖÃÇ©ÃûºÍ°üÃûÊ§°Ü:"+e.toString());
+			System.out.println("è®¾ç½®ç­¾åå’ŒåŒ…åå¤±è´¥:"+e.toString());
 		}finally{
 			if(reader != null){
 				try{
@@ -184,10 +184,10 @@ public class DoWorkUtils {
 	}
 	
 	/**
-	 * ²åÈëhook´úÂë
+	 * æ’å…¥hookä»£ç 
 	 */
 	public static boolean insertHookCode(){
-		System.out.println("µÚÆß²½==> Ìí¼Óhook´úÂë");
+		System.out.println("ç¬¬ä¸ƒæ­¥==> æ·»åŠ hookä»£ç ");
 		long startTime = System.currentTimeMillis();
 		String enterFile = JWMain.rootPath + Const.smaliTmpDir + File.separator + Const.entryClassName.replace(".", File.separator) + ".smali";
 		String enterFileTmp = JWMain.rootPath + Const.smaliTmpDir + File.separator + Const.entryClassName.replace(".", File.separator) + "_tmp.smali";
@@ -235,10 +235,10 @@ public class DoWorkUtils {
             		isSucc = true;
             	}
             }
-            System.out.println("²åÈëhook´úÂë³É¹¦===ºÄÊ±"+((System.currentTimeMillis()-startTime)/1000)+"s\n\n");
+            System.out.println("æ’å…¥hookä»£ç æˆåŠŸ===è€—æ—¶"+((System.currentTimeMillis()-startTime)/1000)+"s\n\n");
             isWorkSucc = true;
         }catch(Exception e){
-        	System.out.println("²åÈëhook´úÂëÊ§°Ü:"+e.toString());
+        	System.out.println("æ’å…¥hookä»£ç å¤±è´¥:"+e.toString());
         }finally{
         	if(reader != null){
 				try{
@@ -269,38 +269,38 @@ public class DoWorkUtils {
 	}
 	
 	/**
-	 * ½«smali×ª»¯³Édex
+	 * å°†smaliè½¬åŒ–æˆdex
 	 */
 	public static boolean smaliToDex(String smaliDir, String dexFile){
-		System.out.println("µÚ°Ë²½==> ½«smali×ª»¯³Édex");
+		System.out.println("ç¬¬å…«æ­¥==> å°†smaliè½¬åŒ–æˆdex");
 		File dexFileF = new File(dexFile);
 		if(dexFileF.exists()){
 			dexFileF.delete();
 		}
-		String javaCmd = "java -jar libs"+File.separator+"smali.jar "+smaliDir + " -o " + dexFile;
+		String javaCmd = "java -jar libs"+File.separator+"smali.jar assemble "+smaliDir + " -o " + dexFile;
 		long startTime = System.currentTimeMillis();
 		try {
 			Process pro = Runtime.getRuntime().exec(javaCmd);
 			int status = pro.waitFor();
 			if(status == 0){
-				System.out.println("smali×ª»¯dex³É¹¦===ºÄÊ±:"+((System.currentTimeMillis()-startTime)/1000)+"s\n\n");
+				System.out.println("smaliè½¬åŒ–dexæˆåŠŸ===è€—æ—¶:"+((System.currentTimeMillis()-startTime)/1000)+"s\n\n");
 				return true;
 			}
-			System.out.println("smali×ª»¯dexÊ§°Ü,status:"+status);
+			System.out.println("smaliè½¬åŒ–dexå¤±è´¥,status:"+status);
 			return false;
 		} catch (Exception e) {
-			System.out.println("smali×ª»¯dexÊ§°Ü:"+e.toString());
+			System.out.println("smaliè½¬åŒ–dexå¤±è´¥:"+e.toString());
 			return false;
 		}
 	}
 	
 	
 	/**
-	 * Ê¹ÓÃaaptÃüÁîÌí¼ÓdexÎÄ¼şµ½apkÖĞ
+	 * ä½¿ç”¨aaptå‘½ä»¤æ·»åŠ dexæ–‡ä»¶åˆ°apkä¸­
 	 */
 	public static boolean addDexToApk(String aaptCmdDir, String unZipDir, String srcApkPath){
 		try{
-			System.out.println("µÚ¾Å²½==> ½«dexÎÄ¼şÌí¼Óµ½Ô´apkÖĞ");
+			System.out.println("ç¬¬ä¹æ­¥==> å°†dexæ–‡ä»¶æ·»åŠ åˆ°æºapkä¸­");
 			long time = System.currentTimeMillis();
 			File aaptFile = new File(aaptCmdDir);
 			String cmd = aaptFile.getAbsolutePath() + " remove " + new File(srcApkPath).getAbsolutePath();
@@ -313,7 +313,7 @@ public class DoWorkUtils {
 			}
 			System.out.println("cmd:"+cmd);
 			if(!execCmd(cmd, true)){
-				System.out.println("Ìí¼ÓdexÎÄ¼şµ½apkÖĞÊ§°Ü£¬ÍË³ö£¡");
+				System.out.println("æ·»åŠ dexæ–‡ä»¶åˆ°apkä¸­å¤±è´¥ï¼Œé€€å‡ºï¼");
 				return false;
 			}
 
@@ -325,28 +325,28 @@ public class DoWorkUtils {
 			}
 			System.out.println("cmd:"+addCmd);
 			if(!execCmd(addCmd, true)){
-				System.out.println("Ìí¼ÓdexÎÄ¼şµ½apkÖĞÊ§°Ü£¬ÍË³ö£¡");
+				System.out.println("æ·»åŠ dexæ–‡ä»¶åˆ°apkä¸­å¤±è´¥ï¼Œé€€å‡ºï¼");
 				return false;
 			}
-			System.out.println("Ìí¼ÓdexÎÄ¼şµ½apkÖĞ½áÊø===ºÄÊ±:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
+			System.out.println("æ·»åŠ dexæ–‡ä»¶åˆ°apkä¸­ç»“æŸ===è€—æ—¶:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
 			return true;
 		}catch(Throwable e){
-			System.out.println("Ìí¼ÓdexÎÄ¼şµ½apkÖĞÊ§°Ü£¬ÍË³ö£¡:"+e.toString());
+			System.out.println("æ·»åŠ dexæ–‡ä»¶åˆ°apkä¸­å¤±è´¥ï¼Œé€€å‡ºï¼:"+e.toString());
 			return false;
 		}
 	}
 	
 	/**
-	 * Ç©ÃûapkÎÄ¼ş
+	 * ç­¾åapkæ–‡ä»¶
 	 */
 	public static boolean signApk(String srcApkPath, String rootPath){
 		try{
-			System.out.println("µÚÊ®²½==> ¿ªÊ¼Ç©ÃûapkÎÄ¼ş:"+srcApkPath);
+			System.out.println("ç¬¬åæ­¥==> å¼€å§‹ç­¾åapkæ–‡ä»¶:"+srcApkPath);
 			long time = System.currentTimeMillis();
 			String keystore = "cyy_game.keystore";
 			File signFile = new File(rootPath+File.separator+keystore);
 			if(!signFile.exists()){
-				System.out.println("Ç©ÃûÎÄ¼ş:"+signFile.getAbsolutePath()+" ²»´æÔÚ£¬ĞèÒª×Ô¼ºÊÖ¶¯Ç©Ãû");
+				System.out.println("ç­¾åæ–‡ä»¶:"+signFile.getAbsolutePath()+" ä¸å­˜åœ¨ï¼Œéœ€è¦è‡ªå·±æ‰‹åŠ¨ç­¾å");
 				return false;
 			}
 			String storePass = "cyy1888";
@@ -361,28 +361,28 @@ public class DoWorkUtils {
 			signCmd.append(keystore + " ");
 			signCmd.append("-digestalg SHA1 -sigalg MD5withRSA");
 			execCmd(signCmd.toString(), false);
-			System.out.println("Ç©ÃûapkÎÄ¼ş½áÊø===ºÄÊ±:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
+			System.out.println("ç­¾åapkæ–‡ä»¶ç»“æŸ===è€—æ—¶:"+((System.currentTimeMillis()-time)/1000)+"s\n\n");
 			return true;
 		}catch(Throwable e){
-			System.out.println("ÖØĞÂÇ©ÃûapkÎÄ¼şÊ§°Ü£¬ÍË³ö£¡:"+e.toString());
+			System.out.println("é‡æ–°ç­¾åapkæ–‡ä»¶å¤±è´¥ï¼Œé€€å‡ºï¼:"+e.toString());
 			return false;
 		}
 	}
 	
 	/**
-	 * ÇåÀíÉ¾³ı¹¤×÷
+	 * æ¸…ç†åˆ é™¤å·¥ä½œ
 	 */
 	public static void deleteTmpFile(String rootPath){
-		//É¾³ı½âÑ¹Ö®ºóµÄÄ¿Â¼
+		//åˆ é™¤è§£å‹ä¹‹åçš„ç›®å½•
 		FileUtils.deleteDirectory(rootPath+Const.unZipDir);
-		//É¾³ısmaliÄ¿Â¼
+		//åˆ é™¤smaliç›®å½•
 		FileUtils.deleteDirectory(rootPath+Const.smaliTmpDir);
-		//É¾³ıÁÙÊ±dexÎÄ¼ş
+		//åˆ é™¤ä¸´æ—¶dexæ–‡ä»¶
 		FileUtils.deleteFile(rootPath+File.separator+"classes.dex");
 	}
 	
 	/**
-	 * Ö´ĞĞÃüÁî
+	 * æ‰§è¡Œå‘½ä»¤
 	 * @param cmd
 	 * @param isOutputLog
 	 * @return
